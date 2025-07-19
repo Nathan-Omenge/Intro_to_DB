@@ -3,8 +3,15 @@
 -- This script prints the full description of the books table from alx_book_store database
 -- Without using DESCRIBE or EXPLAIN statements
 
--- Use the alx_book_store database
-USE alx_book_store;
-
--- Show columns from the books table (alternative to DESCRIBE)
-SHOW COLUMNS FROM books;
+-- Query the INFORMATION_SCHEMA to get full table description
+SELECT 
+    COLUMN_NAME AS 'Field',
+    COLUMN_TYPE AS 'Type',
+    IS_NULLABLE AS 'Null',
+    COLUMN_KEY AS 'Key',
+    COLUMN_DEFAULT AS 'Default',
+    EXTRA AS 'Extra'
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_SCHEMA = 'alx_book_store' 
+AND TABLE_NAME = 'Books'
+ORDER BY ORDINAL_POSITION;
